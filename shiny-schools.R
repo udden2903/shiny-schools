@@ -1,5 +1,3 @@
-rm(list = ls())
-
 library(XML)
 library(tidyverse)
 library(ggmap)
