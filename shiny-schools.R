@@ -37,7 +37,7 @@ schools_filtered <- filter(schools_address, complete.cases(schools_address))
 
 #Use SL's travel planner API to find the estimated duration from Stockholm Central to a given school
 get_trip_dur <- function(lat, long, name) {
-  res <- tryCatch(jsonlite::fromJSON(sprintf("https://api.sl.se/api2/TravelplannerV2/trip.json?key=90e4b7d4883e43298ee24222669724c0&date=2017-06-22&time=08:00&originId=300109002&destCoordLat=%s&destCoordLong=%s&destCoordName=%s&searchForArrival=0&unsharp=0", 
+  res <- tryCatch(jsonlite::fromJSON(sprintf("https://api.sl.se/api2/TravelplannerV2/trip.json?key=[API_KEY]&date=2017-06-22&time=08:00&originId=300109002&destCoordLat=%s&destCoordLong=%s&destCoordName=%s&searchForArrival=0&unsharp=0", 
                                     lat, long, URLencode(gsub(" ", "%20", name)))), error=function(err) NA)
   tryCatch(as.numeric(head(strsplit(res$TripList$Trip$dur, " "), n = 1)), error = function(err) NA)
 }
